@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { string } from '../Common/String';
 
 // Replace 'YOUR_MACHINE_IP' with your actual machine IP address
 const api = axios.create({
-  baseURL: 'http://172.20.10.6:3000', // Ensure json-server is running on this port
+  baseURL: 'YOUR_MACHINE_IP', // Ensure json-server is running on this port
+  // baseURL: 'http://172.20.10.6:3000', 
 });
 
 export const loginUser = async (email: string, password: string) => {
@@ -10,21 +12,20 @@ export const loginUser = async (email: string, password: string) => {
   const users = response.data;
 
   if (users.length === 0) {
-    throw new Error('User not found');
+    throw new Error(string.messages.userNotFound);
   }
 
   const user = users[0];
 
   if (user.password !== password) {
-    throw new Error('Invalid password');
+    throw new Error(string.messages.invalidPassword);
   }
 
   return user;
 };
 
 export const signupUser = async (userData: any) => {
-  const response = await api.post('/users', userData);
-  alert("called"+JSON.stringify(response.data))
+  const response = await api.post('/users', userData)
   return response.data;
 };
 

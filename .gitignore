@@ -64,3 +64,4 @@ buck-out/
 /vendor/bundle/
  
 Source Control - fastlane docs
+package-lock.json

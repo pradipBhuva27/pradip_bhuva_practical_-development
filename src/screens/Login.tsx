@@ -1,59 +1,51 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../redux/authSlice';
-import { RootState } from '../redux/store';
-import { Button } from 'react-native-paper';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {login} from '../redux/authSlice';
+import {AppDispatch, RootState} from '../redux/store';
+import {Button, TextInput} from 'react-native-paper';
+import {commonStyle} from '../Common/CommonStyle';
+import {string} from '../Common/String';
 
-const Login = ({ navigation }: any) => {
+const Login = ({navigation}: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const error = useSelector((state: RootState) => state.auth.error);
 
   const handleLogin = () => {
-    dispatch(login({ email, password }));
+    dispatch(login({email, password}));
   };
 
   return (
-    <View style={styles.container}>
+    <View style={commonStyle.container}>
       {/* {error && <Text style={styles.error}>{error}</Text>} */}
       <TextInput
-        placeholder="Email"
+        label={string.labels.email}
+        mode="outlined"
         value={email}
         onChangeText={setEmail}
-        style={styles.input}
+        style={commonStyle.input}
       />
       <TextInput
-        placeholder="Password"
+        label={string.labels.password}
+        mode="outlined"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
-        style={styles.input}
+        style={commonStyle.input}
       />
-      <Button mode={"elevated"} onPress={handleLogin} style={{margin:10}}>Login</Button>
-      <Button mode={"elevated"} onPress={() => navigation.navigate('Signup')} style={{margin:10}}>Go to Signup</Button>
+      <Button mode={'elevated'} onPress={handleLogin} style={{margin: 10}}>
+        {string.labels.login}
+      </Button>
+      <Button
+        mode={'elevated'}
+        onPress={() => navigation.navigate('Signup')}
+        style={{margin: 10}}>
+        {string.labels.goToSignup}
+      </Button>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 16,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingLeft: 8,
-  },
-  error: {
-    color: 'red',
-    marginBottom: 12,
-  },
-});
 
 export default Login;

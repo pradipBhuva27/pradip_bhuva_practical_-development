@@ -4,6 +4,10 @@ import {useDispatch} from 'react-redux';
 import {signup} from '../redux/authSlice';
 import {Button, RadioButton, TextInput} from 'react-native-paper';
 import {KeyboardAvoidingScrollView} from 'react-native-keyboard-avoiding-scroll-view';
+import {commonStyle} from '../Common/CommonStyle';
+import {string} from '../Common/String';
+import {moderateScale} from 'react-native-size-matters';
+import { AppDispatch } from '../redux/store';
 
 const Signup = ({navigation}: any) => {
   const [firstName, setFirstName] = useState('');
@@ -12,8 +16,8 @@ const Signup = ({navigation}: any) => {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState<'Admin' | 'Customer'>('Customer');
-  const dispatch = useDispatch();
+  const [role, setRole] = useState('Customer');
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleSignup = () => {
     const userData = {
@@ -29,60 +33,74 @@ const Signup = ({navigation}: any) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={commonStyle.container}>
       <KeyboardAvoidingScrollView>
         <>
           <TextInput
-            label="First Name"
+            label={string.labels.firstName}
             mode="outlined"
             value={firstName}
             onChangeText={setFirstName}
-            style={styles.input}
+            style={commonStyle.input}
           />
           <TextInput
-            label="Last Name"
+            label={string.labels.lastName}
             mode="outlined"
             value={lastName}
             onChangeText={setLastName}
-            style={styles.input}
+            style={commonStyle.input}
           />
           <TextInput
-            label="Email"
+            label={string.labels.email}
             mode="outlined"
             value={email}
             keyboardType={'email-address'}
             onChangeText={setEmail}
-            style={styles.input}
+            style={commonStyle.input}
           />
           <TextInput
-            label="Phone"
+            label={string.labels.phone}
             mode="outlined"
             value={phone}
             keyboardType={'phone-pad'}
             onChangeText={setPhone}
-            style={styles.input}
+            style={commonStyle.input}
           />
           <TextInput
-            label="Address"
+            label={string.labels.address}
             mode="outlined"
             value={address}
             onChangeText={setAddress}
-            style={styles.input}
+            style={commonStyle.input}
           />
           <TextInput
-            label="Password"
+            label={string.labels.password}
             mode="outlined"
             value={password}
             onChangeText={setPassword}
             secureTextEntry
-            style={styles.input}
+            style={commonStyle.input}
           />
+          <Text
+            style={{
+              fontSize: moderateScale(16),
+              color: 'black',
+              marginVertical: moderateScale(5),
+            }}>
+            {string.labels.pleaseSelectYourRole}
+          </Text>
           <RadioButton.Group
             onValueChange={newValue => setRole(newValue)}
             value={role}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <RadioButton value="Admin" />
-              <Text>Admin</Text>
+              <Text
+                style={{
+                  fontSize: moderateScale(16),
+                  color: 'black',
+                }}>
+                Admin
+              </Text>
               <View
                 style={{
                   flexDirection: 'row',
@@ -90,7 +108,10 @@ const Signup = ({navigation}: any) => {
                   alignItems: 'center',
                 }}>
                 <RadioButton value="Customer" />
-                <Text>Customer</Text>
+                <Text style={{
+                  fontSize: moderateScale(16),
+                  color: 'black',
+                }}>Customer</Text>
               </View>
             </View>
           </RadioButton.Group>
@@ -108,19 +129,5 @@ const Signup = ({navigation}: any) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 16,
-  },
-  input: {
-    borderColor: 'gray',
-    borderWidth: 0,
-    marginBottom: 12,
-    paddingLeft: 8,
-  },
-});
 
 export default Signup;
