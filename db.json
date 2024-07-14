@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "0617",
+      "firstName": "Admin",
+      "lastName": "Admin",
+      "email": "admin@admin.com",
+      "phone": "74774783",
+      "address": "Surat",
+      "role": "Admin",
+      "password": "1234"
+    }
+  ],
+  "employees": [
+  ]
+}
