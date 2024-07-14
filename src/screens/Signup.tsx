@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {signup} from '../redux/authSlice';
 import {Button, RadioButton, TextInput} from 'react-native-paper';

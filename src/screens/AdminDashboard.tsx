@@ -76,13 +76,6 @@ const AdminDashboard = () => {
           </Text>
         </View>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          {/* <Button
-            mode={'elevated'}
-            onPress={() =>
-              handleUpdateEmployee(item.id, item.name, item.position)
-            }>
-            {string.labels.update}
-          </Button> */}
           <Pressable
             onPress={() => {
               setEditEmoployeeId(item.id);
@@ -94,11 +87,6 @@ const AdminDashboard = () => {
             }}>
             <Image style={styles.imgEdit} source={Images.icEdit} />
           </Pressable>
-          {/* <Button
-            mode={'elevated'}
-            onPress={() => handleDeleteEmployee(item.id)}>
-            {string.labels.delete}
-          </Button> */}
           <Pressable
             style={{marginStart: moderateScale(10)}}
             onPress={() => {

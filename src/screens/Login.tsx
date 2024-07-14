@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../redux/authSlice';
 import {AppDispatch, RootState} from '../redux/store';
@@ -11,7 +11,6 @@ const Login = ({navigation}: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch<AppDispatch>();
-  const error = useSelector((state: RootState) => state.auth.error);
 
   const handleLogin = () => {
     dispatch(login({email, password}));
